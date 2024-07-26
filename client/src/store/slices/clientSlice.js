@@ -6,6 +6,7 @@ const clientSlice = createSlice({
     initialState: {
         loading: false,
         clients: [],
+        singleClient: {},
         error: null,
         message: null,
     },
@@ -22,6 +23,21 @@ const clientSlice = createSlice({
         },
         getAllClientsFailed(state, action) {
             state.clients = state.clients;
+            state.error = action.payload;
+            state.loading = false;
+        },
+        getClientRequest(state, action) {
+            state.singleClient = {};
+            state.error = null;
+            state.loading = true;
+        },
+        getClientSuccess(state, action) {
+            state.singleClient = action.payload;
+            state.error = null;
+            state.loading = false;
+        },
+        getClientFailed(state, action) {
+            state.singleClient = state.singleClient;
             state.error = action.payload;
             state.loading = false;
         },
@@ -48,6 +64,22 @@ export const getAllClients = () => async (dispatch) => {
         dispatch(clientSlice.actions.clearAllErrors());
     } catch (error) {
         dispatch(clientSlice.actions.getAllClientsFailed(error.message));
+    }
+};
+
+export const getClient = (id) => async (dispatch) => {
+    dispatch(clientSlice.actions.getClientRequest());
+    try {
+        const { data } = await axios.get(
+            `http://127.0.0.1:5555/clients/${id}`,
+            {
+                withCredentials: true,
+            }
+        );
+        dispatch(clientSlice.actions.getClientSuccess(data));
+        dispatch(clientSlice.actions.clearAllErrors());
+    } catch (error) {
+        dispatch(clientSlice.actions.getClientFailed(data.message));
     }
 };
 

@@ -18,7 +18,7 @@ const App = () => {
         dispatch(getAllStocks());
         dispatch(getWatchlist());
         dispatch(getAllClients());
-    }, []);
+    }, [dispatch]);
 
     return (
         <Router>
