@@ -6,8 +6,37 @@ This Flask application provides an API endpoint to fetch data from DynamoDB. It 
 
 ## File Structure
 
--   `app.py`: The main entry point for the Flask application. Initializes the app and registers routes.
--   `config.py`: Contains configuration settings.
--   `models/model_name.py`: Defines the `model_name` class responsible for interacting with the DynamoDB table.
--   `routes/app_routes.py`: Defines routes related to application.
--   `utils/dynamodb.py`: Provides utility functions for creating a DynamoDB resource.
+```
+/stock-algo-dashboard
+│
+├── /client/
+│   ├── public/
+│   ├── src/
+│   ├── package.json
+│   ├── README.md
+│
+├── /server/
+│   ├── app/
+│   ├── config/
+│   ├── requirements.txt
+│   ├── README.md
+│
+├── README.md         # Root README (This file)
+```
+
+## Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/sanket1703/stock-algo-dashboard.git
+cd stock-algo-dashboard
+```
+
+### Client
+
+For more details on the client-side of the application, please refer to the [Client README](./client/README.md).
+
+### Server
+
+For more details on the server-side of the application, please refer to the [Server README](./server/README.md).
